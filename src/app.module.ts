@@ -6,13 +6,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
+const MONGO_URI = process.env['MONGO'] ?? process.env.MONGO;
+
 @Module({
   imports: [
-    UsersModule, 
-    MongooseModule.forRoot(process.env.MONGO?? '')
+    UsersModule,
+    MongooseModule.forRoot(MONGO_URI)
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 
-export class AppModule {}
+export class AppModule { }
